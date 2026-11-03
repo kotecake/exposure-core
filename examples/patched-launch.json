@@ -1,0 +1,25 @@
+{
+  "rule": {
+    "id": "SYNTH-BROWSER",
+    "platform": "windows",
+    "stale": false,
+    "as_of": "2026-01-02",
+    "ranges": {
+      "release": {
+        "from": "100",
+        "fixed": "100.0.10"
+      },
+      "esr": {
+        "from": "90",
+        "fixed": "90.1"
+      }
+    }
+  },
+  "observation": {
+    "platform": "windows",
+    "channel": "release",
+    "installed": "100.0.9",
+    "runtime": "100.0.10",
+    "at": "2026-01-02"
+  }
+}

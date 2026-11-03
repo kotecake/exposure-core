@@ -1,1 +1,31 @@
-# exposure-core
+# Exposure Core
+
+Does knowing which executable actually ran improve workstation security triage? This offline-first research prototype compares package inventory with observed runtime evidence. In the included paired example, the installed browser is susceptible and the observed launch is patched. The two methods give different answers on the same evidence.
+
+## Run from the repository root
+
+Requires Python 3.11 or later. No dependencies or credentials for replay.
+
+    python -m exposure_core demo
+    python -m exposure_core benchmark
+    python -m exposure_core assess examples/patched-launch.json
+    python -m exposure_core report examples/patched-launch.json > report.html
+    python -m unittest discover -s tests -v
+
+## Results and scope
+
+The evidence matcher matches 11 of 11 author-labelled synthetic cases. The inventory baseline substitutes installed version for runtime and matches 7 of 11. Both use the same advisory conditions. These small development fixtures exercise branches of the implementation. They provide no estimate of real-world accuracy. No independent labels, temporal holdout, or model-only arm have been measured. Full case-level outcomes are in examples/benchmark.json.
+
+## Architecture and threat model
+
+A normalized rule records channel, platform, affected interval, source date and lifecycle. A local observation records runtime and installed versions. The pure matcher joins those fields and keeps interface binding separate from reachability. Unsupported version syntax and missing evidence produce uncertainty. The escaped HTML and JSON renderers consume the same assessment. Fixture bulletins are fictional. The research harness trusts the supplied freshness and runtime labels, so independently validate those fields before using real inputs.
+
+The inspect command requests Windows network profiles and listening addresses without elevation. The live collector does not identify which browser a particular agent launched or evaluate effective firewall rules. It has not been validated on a managed Windows endpoint. Network commands never run during the offline demo. The optional feeds refresh command retrieves public CISA KEV and GitHub advisory data from fixed HTTPS endpoints into a local SQLite cache and rejects redirects. Feed records are informational and currently require manual normalization for assessment. The purge command removes that cache. Retest reruns assessment against a supplied new snapshot.
+
+## Research roadmap
+
+Next milestones are live runtime attribution, Firefox/ESR and Chrome vendor adapters, dated evidence edges, independent labelling, held-out advisory families and a budget-matched model-only evaluation. Record unsupported confident claims, misses, false alerts, citation accuracy, latency, tokens and cost before making public performance claims. The initial offline result uses zero inference tokens.
+
+## Provenance
+
+All code and fixtures in this initial history were generated for this project. No employer code, workstation observations or client records are included. Public feed sources: https://github.com/cisagov/kev-data and https://docs.github.com/en/rest/security-advisories/global-advisories . No third-party feed payloads are redistributed.

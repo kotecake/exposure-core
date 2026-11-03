@@ -1,0 +1,75 @@
+{
+  "cases": [
+    {
+      "case": "vulnerable-launch",
+      "expected": "affected",
+      "evidence": "affected",
+      "inventory": "affected"
+    },
+    {
+      "case": "managed-patched",
+      "expected": "outside_affected_range",
+      "evidence": "outside_affected_range",
+      "inventory": "affected"
+    },
+    {
+      "case": "unobserved-launch",
+      "expected": "potentially_affected",
+      "evidence": "potentially_affected",
+      "inventory": "affected"
+    },
+    {
+      "case": "esr-patched",
+      "expected": "outside_affected_range",
+      "evidence": "outside_affected_range",
+      "inventory": "outside_affected_range"
+    },
+    {
+      "case": "esr-vulnerable",
+      "expected": "affected",
+      "evidence": "affected",
+      "inventory": "outside_affected_range"
+    },
+    {
+      "case": "unknown-channel",
+      "expected": "unknown",
+      "evidence": "unknown",
+      "inventory": "unknown"
+    },
+    {
+      "case": "stale",
+      "expected": "unknown",
+      "evidence": "unknown",
+      "inventory": "unknown"
+    },
+    {
+      "case": "withdrawn",
+      "expected": "not_applicable",
+      "evidence": "not_applicable",
+      "inventory": "not_applicable"
+    },
+    {
+      "case": "wrong-platform",
+      "expected": "unknown",
+      "evidence": "unknown",
+      "inventory": "unknown"
+    },
+    {
+      "case": "backport-unknown",
+      "expected": "unknown",
+      "evidence": "unknown",
+      "inventory": "affected"
+    },
+    {
+      "case": "untrusted-text",
+      "expected": "affected",
+      "evidence": "affected",
+      "inventory": "affected"
+    }
+  ],
+  "matches": {
+    "evidence": 11,
+    "inventory": 7
+  },
+  "model_only": "not_run"
+}
