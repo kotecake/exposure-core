@@ -36,3 +36,9 @@ All code and fixtures in this initial history were generated for this project. N
     python -m exposure_core.agent --case unobserved-launch
 
 The agent starts without observation fields and chooses among read-only evidence tools. In the first replay it obtains runtime evidence and stops. In the second it cannot observe the runtime, requests inventory and returns a qualified verdict. Both commands use synthetic tool results and a deterministic default planner. To delegate tool selection to an installed local Ollama model, append `--model MODEL_NAME`. The controller enforces an action allowlist and budget. The model cannot set the verdict or run commands. This experiment has no measured live-model results yet. The Windows collector and public feeds are separate CLI features pending integration into this loop.
+
+## Event-driven triage
+
+Run `python -m exposure_core.triggers event.json` for a single normalized event, for example
+`{"kind":"vpn_changed","before":"connected","after":"disconnected"}`.
+The dispatcher returns a recommended local check or an evidence-based verdict and exits. It makes zero model calls. A manual investigation is available with `python -m exposure_core.agent`. Native network/VPN subscriptions, build hooks and alert delivery are future adapters. A production adapter should debounce transitions, coalesce by device/project plus advisory revision and evidence fingerprint, refresh affected facts, and notify only on changed exposure. A VPN provider must supply trusted status. A public network or VPN loss alone cannot establish exploitability. Keep automatic LLM invocation off by default. Any future opt-in escalation should require a specific unresolved decision, eligible evidence, a per-run and daily token limit, and a stop condition.
