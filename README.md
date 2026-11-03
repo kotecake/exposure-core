@@ -29,3 +29,10 @@ Next milestones are live runtime attribution, Firefox/ESR and Chrome vendor adap
 ## Provenance
 
 All code and fixtures in this initial history were generated for this project. No employer code, workstation observations or client records are included. Public feed sources: https://github.com/cisagov/kev-data and https://docs.github.com/en/rest/security-advisories/global-advisories . No third-party feed payloads are redistributed.
+
+## Agent investigation demo
+
+    python -m exposure_core.agent --case managed-patched
+    python -m exposure_core.agent --case unobserved-launch
+
+The agent starts without observation fields and chooses among read-only evidence tools. In the first replay it obtains runtime evidence and stops. In the second it cannot observe the runtime, requests inventory and returns a qualified verdict. Both commands use synthetic tool results and a deterministic default planner. To delegate tool selection to an installed local Ollama model, append `--model MODEL_NAME`. The controller enforces an action allowlist and budget. The model cannot set the verdict or run commands. This experiment has no measured live-model results yet. The Windows collector and public feeds are separate CLI features pending integration into this loop.
